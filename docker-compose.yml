@@ -2,23 +2,24 @@ version: '3.7'
 
 services:
   mediscreen-container:
-    image: oc-mediscreen:1
+    image: oc-mediscreen:4
     build:
       context: ./
       dockerfile: DockerFile
     depends_on:
       - mysql_db
-    command: sh -c './wait-for mysql_db:3306 -- npm start'
     volumes:
       - /data/mediscreen
     ports:
       - "8080:8080"
+    links:
+      - mysql_db:app_db
 
   mysql_db:
     image: "mysql:8.0"
     restart: always
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
       MYSQL_DATABASE: mediscreen
       MYSQL_USER: user

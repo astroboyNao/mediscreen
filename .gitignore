@@ -1,4 +1,11 @@
-/mediscreen-back/target/
-/mediscreen-front/target/
-/.idea
-/.mvn
+mediscreen-back/target
+mediscreen-front/target
+.idea
+.mvn
+mediscreen-front/.angular
+mediscreen-front/.vscode
+mediscreen-front/dist
+mediscreen-front/node
+mediscreen-front/node_modules
+mediscreen-front/target
+/mediscreen-front/node_modules/
