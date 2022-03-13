@@ -1,0 +1,3 @@
+FROM openjdk:11-jdk
+COPY mediscreen-back/target/*.jar mediscreen.jar
+ENTRYPOINT ["java","-jar","/mediscreen.jar"]
