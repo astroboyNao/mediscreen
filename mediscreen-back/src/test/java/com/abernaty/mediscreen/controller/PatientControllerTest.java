@@ -32,6 +32,7 @@ public class PatientControllerTest {
     private MockMvc mockMvc;
     private PatientService patientService;
     private PatientController patientController;
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @BeforeEach
     public void setup() {
@@ -64,4 +65,28 @@ public class PatientControllerTest {
         ;
     }
 
+    @Test
+    void updatePatient() throws Exception {
+        PatientDTO patientDTO = PatientDTO.builder()
+                .name("patient")
+                .firstName("firstName")
+                .sex('M')
+                .address("address")
+                .family("family")
+                .dob(LocalDate.of(1999, 12, 31))
+                .build();
+        Mockito.when(patientService.editPatient(Mockito.any(PatientDTO.class))).thenReturn(patientDTO);
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/patient")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\": \"patient\", \"firstName\":\"firstName\", \"sex\":\"M\"," +
+                                "\"address\": \"address\",\"family\": \"family\",\"dob\":\"1999-12-01\"}"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("name").value("patient"))
+                .andExpect(MockMvcResultMatchers.jsonPath("firstName").value("firstName"))
+                .andExpect(MockMvcResultMatchers.jsonPath("sex").value("M"))
+                .andExpect(MockMvcResultMatchers.jsonPath("address").value("address"))
+                .andExpect(MockMvcResultMatchers.jsonPath("family").value("family"))
+                .andExpect(MockMvcResultMatchers.jsonPath("dob").value("1999-12-31"))
+        ;
+    }
 }

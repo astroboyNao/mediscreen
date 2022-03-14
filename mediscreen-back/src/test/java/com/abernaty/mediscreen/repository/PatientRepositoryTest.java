@@ -1,5 +1,7 @@
 package com.abernaty.mediscreen.repository;
 
+import com.abernathy.mediscreen.model.domain.Patient;
+import com.abernathy.mediscreen.model.dto.PatientDTO;
 import com.abernathy.mediscreen.repository.PatientRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -51,5 +53,17 @@ public class PatientRepositoryTest {
     void should_get_all_patients() {
         var patients = patientRepository.findAll();
         Assertions.assertThat(patients).isNotEmpty();
+    }
+
+    @Test
+    @Sql({"/insert-data.sql"})
+    void should_update_patient() {
+        Patient patient = new Patient();
+        patient.setId(1L);
+        patient.setName("patientUpdated");
+        var patientResult = patientRepository.save(patient);
+        Assertions.assertThat(patient).isNotNull();
+        Assertions.assertThat(patient.getId()).isEqualTo(1L);
+        Assertions.assertThat(patient.getName()).isEqualTo("patientUpdated");
     }
 }

@@ -52,6 +52,19 @@ public class PatientControllerIT {
 
     }
 
+    @Test
+    @Sql({"/insert-data.sql"})
+    public void updatePatient() {
+        PatientDTO patient = PatientDTO.builder().id(1L).name("patientUpdated").build();
+
+        HttpEntity entity = new HttpEntity<PatientDTO>(patient, headers);
+
+        ResponseEntity responseEntity = testRestTemplate.exchange(createURLWithPort(
+                "/api/patient"), HttpMethod.PUT, entity, PatientDTO.class);
+
+        Assertions.assertNotNull(responseEntity);
+
+    }
 
     private String createURLWithPort(String uri) {
         return "http://localhost:" + port + uri;

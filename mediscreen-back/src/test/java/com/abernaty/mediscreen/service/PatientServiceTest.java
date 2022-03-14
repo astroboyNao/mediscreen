@@ -36,4 +36,22 @@ public class PatientServiceTest {
         Assertions.assertThat(patientsResult.get(0).getName()).isEqualTo("patient");
 
     }
+
+
+    @Test
+    void shouldUpdatePatient() {
+        PatientDTO patient = PatientDTO.builder().name("patientUpdated").build();
+        Patient patientUpdated = new Patient();
+        patientUpdated.setName("patientUpdated");
+
+
+        Mockito.when(patientMapper.toPatient(patient)).thenReturn(patientUpdated);
+        Mockito.when(patientRepository.save(patientUpdated)).thenReturn(patientUpdated);
+        Mockito.when(patientMapper.toPatientDTO(patientUpdated)).thenReturn(patient);
+
+        var patientsResult = patientService.editPatient(patient);
+
+        Assertions.assertThat(patientsResult.getName()).isEqualTo("patientUpdated");
+
+    }
 }

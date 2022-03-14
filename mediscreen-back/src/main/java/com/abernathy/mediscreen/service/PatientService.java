@@ -17,4 +17,8 @@ public class PatientService {
     public List<PatientDTO> getAll() {
         return patientMapper.toPatientDTOs(patientRepository.findAll());
     }
+
+    public PatientDTO editPatient(PatientDTO patient) {
+        return patientMapper.toPatientDTO(patientRepository.save(patientMapper.toPatient(patient)));
+    }
 }

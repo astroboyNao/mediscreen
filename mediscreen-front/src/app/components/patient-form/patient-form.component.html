@@ -1,0 +1,69 @@
+<h1 mat-dialog-title>Edit Patient</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formInstance">
+    <div>
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>first Name</mat-label>
+        <input formControlName="firstName" matInput
+               name="firstName" type="text">
+      </mat-form-field>
+    </div>
+
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput name="name" type="text"/>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>Family</mat-label>
+        <input formControlName="family" matInput name="family" type="text"/>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>Date of Birth</mat-label>
+        <input formControlName="dob" matInput name="dob" type="text"/>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>Sex</mat-label>
+        <mat-select formControlName="sex">
+          <mat-option value="M">Male</mat-option>
+          <mat-option value="F">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>Address</mat-label>
+        <input formControlName="address" matInput name="address" type="text"/>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>Phone</mat-label>
+        <input formControlName="phone" matInput name="phone" type="text"/>
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+    </div>
+
+  </form>
+</div>
+
+<div class="mt-7" mat-dialog-actions>
+  <button (click)="save()" [disabled]="formInstance.dirty && formInstance.errors"
+          cdkFocusInitial color="primary"
+          mat-raised-button>Save
+  </button>
+  <button mat-dialog-close mat-raised-button>Cancel</button>
+
+</div>
