@@ -4,9 +4,19 @@
       <th mat-header-cell *matHeaderCellDef> {{col}} </th>
       <td *matCellDef="let element" mat-cell>
         {{element[col]}}
+
+        <button (click)="showNotes(element)" *ngIf="col == 'notes'" aria-label="Show Notes" matRipple
+                matTooltip="Show Notes"
+                matTooltipPosition="left">
+          <span aria-hidden="true" class="material-icons-outlined">Notes</span>
+        </button>
         <button (click)="edit(element)" *ngIf="col == 'edit'" aria-label="Edit Row" matRipple matTooltip="Edit Row"
                 matTooltipPosition="left">
           <span aria-hidden="true" class="material-icons-outlined">edit</span>
+        </button>
+        <button (click)="add()" *ngIf="col == 'add'" aria-label="Add Row" matRipple matTooltip="Add Row"
+                matTooltipPosition="left">
+          <span aria-hidden="true" class="material-icons-outlined">add</span>
         </button>
       </td>
     </ng-container>

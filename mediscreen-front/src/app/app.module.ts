@@ -15,12 +15,14 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {NoteListComponent} from "./components/note-list/note-list.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientListComponent,
-    PatientFormComponent
+    PatientFormComponent,
+    NoteListComponent
   ],
   imports: [
     BrowserModule,

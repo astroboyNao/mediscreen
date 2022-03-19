@@ -22,13 +22,13 @@
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
         <version>3.1.0</version>
-        <configuration>
+        <com.abernathy.notes.configuration>
           <filesets>
             <fileset>
               <directory>dist</directory>
             </fileset>
           </filesets>
-        </configuration>
+        </com.abernathy.notes.configuration>
       </plugin>
 
       <plugin>
@@ -43,9 +43,9 @@
             <goals>
               <goal>install-node-and-npm</goal>
             </goals>
-            <configuration>
+            <com.abernathy.notes.configuration>
               <nodeVersion>v14.16.0</nodeVersion>
-            </configuration>
+            </com.abernathy.notes.configuration>
           </execution>
 
           <!-- clean install -->
@@ -62,9 +62,9 @@
             <goals>
               <goal>npm</goal>
             </goals>
-            <configuration>
+            <com.abernathy.notes.configuration>
               <arguments>run build --prod</arguments>
-            </configuration>
+            </com.abernathy.notes.configuration>
           </execution>
 
         </executions>

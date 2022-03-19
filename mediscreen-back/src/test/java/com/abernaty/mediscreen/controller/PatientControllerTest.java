@@ -1,6 +1,7 @@
 package com.abernaty.mediscreen.controller;
 
 import com.abernathy.mediscreen.controller.PatientController;
+import com.abernathy.mediscreen.model.dto.NoteDTO;
 import com.abernathy.mediscreen.model.dto.PatientDTO;
 import com.abernathy.mediscreen.service.PatientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -87,6 +88,47 @@ public class PatientControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("address").value("address"))
                 .andExpect(MockMvcResultMatchers.jsonPath("family").value("family"))
                 .andExpect(MockMvcResultMatchers.jsonPath("dob").value("1999-12-31"))
+        ;
+    }
+
+
+    @Test
+    void addPatient() throws Exception {
+        PatientDTO patientDTO = PatientDTO.builder()
+                .name("patient")
+                .firstName("firstName")
+                .sex('M')
+                .address("address")
+                .family("family")
+                .dob(LocalDate.of(1999, 12, 31))
+                .build();
+        Mockito.when(patientService.addPatient(Mockito.any(PatientDTO.class))).thenReturn(patientDTO);
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/patient")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\": \"patient\", \"firstName\":\"firstName\", \"sex\":\"M\"," +
+                                "\"address\": \"address\",\"family\": \"family\",\"dob\":\"1999-12-01\"}"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("name").value("patient"))
+                .andExpect(MockMvcResultMatchers.jsonPath("firstName").value("firstName"))
+                .andExpect(MockMvcResultMatchers.jsonPath("sex").value("M"))
+                .andExpect(MockMvcResultMatchers.jsonPath("address").value("address"))
+                .andExpect(MockMvcResultMatchers.jsonPath("family").value("family"))
+                .andExpect(MockMvcResultMatchers.jsonPath("dob").value("1999-12-31"))
+        ;
+    }
+
+    @Test
+    void getAllNoteForPatient() throws Exception {
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setNote("note");
+        noteDTO.setId("idNote");
+        noteDTO.setRiskLevel("riskLevel");
+        Mockito.when(patientService.getAllNotes(1L)).thenReturn(List.of(noteDTO));
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/patient/1/notes", MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].riskLevel").value("riskLevel"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].note").value("note"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("idNote"))
         ;
     }
 }

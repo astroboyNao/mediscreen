@@ -1,6 +1,7 @@
 package com.abernathy.mediscreen.controller;
 
 import com.abernathy.mediscreen.model.domain.Patient;
+import com.abernathy.mediscreen.model.dto.NoteDTO;
 import com.abernathy.mediscreen.model.dto.PatientDTO;
 import com.abernathy.mediscreen.service.PatientService;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,15 @@ public class PatientController {
     @PutMapping("/patient")
     public PatientDTO editPatient(@RequestBody PatientDTO patient) {
         return patientService.editPatient(patient);
+    }
+
+    @PostMapping("/patient")
+    public PatientDTO addPatient(@RequestBody PatientDTO patient) {
+        return patientService.addPatient(patient);
+    }
+
+    @GetMapping(value = "/patient/{patientId}/notes")
+    public List<NoteDTO> getAllNoteForPatient(@PathVariable("patientId") Long patientId) {
+        return patientService.getAllNotes(patientId);
     }
 }

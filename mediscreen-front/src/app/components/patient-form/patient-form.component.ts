@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, PatternValidator, Validators} from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Patient} from "../../models/patient.model";
 
@@ -19,9 +19,9 @@ export class PatientFormComponent implements OnInit {
       "firstName": new FormControl('', Validators.required),
       "name": new FormControl('', Validators.required),
       "family": new FormControl('', Validators.required),
-      "dob": new FormControl('', Validators.pattern("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")),
+      "dob": new FormControl('', [Validators.required, Validators.pattern("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")]),
       "sex": new FormControl('', Validators.required),
-      "address": new FormControl('', Validators.required),
+      "address": new FormControl(''),
       "phone": new FormControl('', Validators.pattern("[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9]"))
 
     });

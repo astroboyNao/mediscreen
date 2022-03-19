@@ -4,9 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
 	<modules>
-		<module>mediscreen-back</module>
-		<module>mediscreen-front</module>
-	</modules>
+        <module>mediscreen-back</module>
+        <module>mediscreen-front</module>
+        <module>notes-back</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

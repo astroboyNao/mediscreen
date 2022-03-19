@@ -1,0 +1,17 @@
+<div id="table-container">
+  <table [dataSource]="dataSource" mat-table>
+    <ng-container *ngFor="let col of displayColumns" matColumnDef="{{col}}">
+      <th *matHeaderCellDef mat-header-cell> {{col}} </th>
+      <td *matCellDef="let element" mat-cell>
+        {{element[col]}}
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns:displayColumns;" mat-row></tr>
+  </table>
+
+</div>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>
