@@ -5,6 +5,7 @@ import com.abernathy.mediscreen.model.dto.NoteDTO;
 import com.abernathy.mediscreen.model.dto.PatientDTO;
 import com.abernathy.mediscreen.service.PatientService;
 import lombok.AllArgsConstructor;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,5 +42,11 @@ public class PatientController {
     @PostMapping(value = "/patient/{patientId}/note")
     public NoteDTO addNoteForPatient(@PathVariable("patientId") Long patientId, @RequestBody NoteDTO noteDTO) {
         return patientService.addNoteForPatient(noteDTO, patientId);
+    }
+
+    @PutMapping(value = "/patient/{patientId}/note/{noteId}")
+    public NoteDTO updateNoteForPatient(@PathVariable("patientId") Long patientId, @PathVariable("noteId") String noteId, @RequestBody NoteDTO noteDTO) {
+        noteDTO.setId(noteId);
+        return patientService.updateNoteForPatient(noteDTO, patientId);
     }
 }

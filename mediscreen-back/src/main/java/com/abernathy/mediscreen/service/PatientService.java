@@ -40,6 +40,14 @@ public class PatientService {
     }
 
     public NoteDTO addNoteForPatient(NoteDTO noteDTO, Long patientId) {
-        return noteMapper.toNoteDTO(noteRepository.addNoteForPatient(noteMapper.toNote(noteDTO), patientId));
+        Note note = noteMapper.toNote(noteDTO);
+        note.setId(null);
+        return noteMapper.toNoteDTO(noteRepository.addNoteForPatient(note, patientId));
+    }
+
+    public NoteDTO updateNoteForPatient(NoteDTO noteDTO, Long patientId) {
+        Note note = noteMapper.toNote(noteDTO);
+        note.setPatientId(patientId);
+        return noteMapper.toNoteDTO(noteRepository.updateNote(note));
     }
 }

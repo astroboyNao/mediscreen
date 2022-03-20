@@ -17,6 +17,7 @@ export class NoteFormComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: Note
   ) {
     this.formInstance = new FormGroup({
+      "id": new FormControl('', Validators.required),
       "riskLevel": new FormControl('', Validators.required),
       "note": new FormControl('', Validators.required)
     });

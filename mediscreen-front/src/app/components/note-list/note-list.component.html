@@ -1,9 +1,19 @@
 <div id="table-container">
   <table [dataSource]="dataSource" mat-table>
     <ng-container *ngFor="let col of displayColumns" matColumnDef="{{col}}">
-      <th *matHeaderCellDef mat-header-cell> {{col}} </th>
+      <th *matHeaderCellDef mat-header-cell> {{col}}
+        <button (click)="add()" *ngIf="col == 'add'" aria-label="add" matRipple matTooltip="add"
+                matTooltipPosition="left">
+          <span aria-hidden="true" class="material-icons-outlined">add</span>
+        </button>
+      </th>
       <td *matCellDef="let element" mat-cell>
         {{element[col]}}
+
+        <button (click)="edit(element)" *ngIf="col == 'edit'" aria-label="edit" matRipple matTooltip="edit"
+                matTooltipPosition="left">
+          <span aria-hidden="true" class="material-icons-outlined">edit</span>
+        </button>
 
         <button (click)="add()" *ngIf="col == 'add'" aria-label="add" matRipple matTooltip="add"
                 matTooltipPosition="left">

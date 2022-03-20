@@ -46,7 +46,7 @@ public class NoteServiceTest {
     }
 
     @Test
-    void addNotesForNote() {
+    void addNotesForPatient() {
         NoteDTO noteDTO = new NoteDTO();
         noteDTO.setNote("note");
         noteDTO.setId("idNote");
@@ -64,6 +64,31 @@ public class NoteServiceTest {
         Mockito.when(noteMapper.toNote(noteDTO)).thenReturn(note);
 
         var noteResult = noteService.addNoteForPatientId(noteDTO, 1L);
+
+        Assertions.assertThat(noteResult.getNote()).isEqualTo("note");
+
+    }
+
+
+    @Test
+    void updateNotesForPatient() {
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setNote("note");
+        noteDTO.setId("idNote");
+        noteDTO.setRiskLevel("riskLevel");
+
+        Note note = new Note();
+        note.setNote("note");
+        note.setId("idNote");
+        note.setPatientId(1L);
+        note.setRiskLevel("riskLevel");
+        Note[] notes = {note};
+
+        Mockito.when(noteRepository.save(note)).thenReturn(note);
+        Mockito.when(noteMapper.toNoteDTO(note)).thenReturn(noteDTO);
+        Mockito.when(noteMapper.toNote(noteDTO)).thenReturn(note);
+
+        var noteResult = noteService.updateNote(noteDTO, 1L);
 
         Assertions.assertThat(noteResult.getNote()).isEqualTo("note");
 

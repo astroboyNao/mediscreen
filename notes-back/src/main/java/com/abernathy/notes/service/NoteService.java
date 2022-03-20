@@ -25,4 +25,9 @@ public class NoteService {
         return noteMapper.toNoteDTO(noteRepository.save(note));
     }
 
+    public NoteDTO updateNote(NoteDTO noteDTO, Long patientId) {
+        Note note = noteMapper.toNote(noteDTO);
+        note.setPatientId(patientId);
+        return noteMapper.toNoteDTO(noteRepository.save(note));
+    }
 }

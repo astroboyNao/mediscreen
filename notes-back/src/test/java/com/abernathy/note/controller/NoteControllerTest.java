@@ -63,4 +63,19 @@ public class NoteControllerTest {
         ;
     }
 
+    @Test
+    void updateNote() throws Exception {
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setNote("note");
+        noteDTO.setId("id");
+        noteDTO.setRiskLevel("riskLevel");
+        Mockito.when(noteService.updateNote(Mockito.any(NoteDTO.class), Mockito.anyLong())).thenReturn(noteDTO);
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/note/1/patient/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"note\": \"note\", \"riskLevel\":\"riskLevel\"}"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("note").value("note"))
+                .andExpect(MockMvcResultMatchers.jsonPath("riskLevel").value("riskLevel"))
+        ;
+    }
 }

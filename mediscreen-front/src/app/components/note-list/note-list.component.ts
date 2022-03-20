@@ -14,7 +14,7 @@ import {NoteFormComponent} from "../note-form/note-form.component";
 })
 export class NoteListComponent implements OnInit {
   dataSource: MatTableDataSource<Note> = new MatTableDataSource<Note>();
-  displayColumns: string[] = ['id', 'riskLevel', 'note', 'add'];
+  displayColumns: string[] = ['id', 'riskLevel', 'note', 'edit', 'add'];
   patient: Patient;
 
   constructor(public dialogRef: MatDialogRef<NoteListComponent>,
@@ -39,7 +39,7 @@ export class NoteListComponent implements OnInit {
 
   add() {
     let note: Note = {
-      note: "", riskLevel: ""
+      note: "", riskLevel: "", id: 0
     };
     const dialogRef = this.dialog.open(NoteFormComponent, {
       width: '400px',
@@ -49,6 +49,22 @@ export class NoteListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.patientService.addNoteForPatient(result, this.patient).subscribe({
+          next: (note) => this.getAllNotes(this.patient)
+        });
+      }
+    });
+  }
+
+
+  edit(data: Note) {
+    const dialogRef = this.dialog.open(NoteFormComponent, {
+      width: '400px',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.patientService.updateNoteForPatient(result, this.patient).subscribe({
           next: (note) => this.getAllNotes(this.patient)
         });
       }

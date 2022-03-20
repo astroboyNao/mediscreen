@@ -61,7 +61,7 @@ public class NoteRepositoryImplTest {
     }
 
     @Test
-    public void addNoteForPatient() {
+    public void addORUpdateNoteForPatient() {
         Note note = new Note();
         note.setNote("note");
         Note noteResult = noteRepository.save(note);

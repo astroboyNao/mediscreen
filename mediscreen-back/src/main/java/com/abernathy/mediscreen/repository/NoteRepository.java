@@ -8,4 +8,5 @@ public interface NoteRepository {
 
     public Note addNoteForPatient(Note note, Long patientId);
 
+    public Note updateNote(Note note);
 }

@@ -30,6 +30,10 @@ export class PatientService {
   }
 
   addNoteForPatient(note: Note, patient: Patient): Observable<Note> {
-    return this.http.post<Note>(baseUrl + "/patient/" + patient.id + "/com.abernathy.note", note);
+    return this.http.post<Note>(baseUrl + "/patient/" + patient.id + "/note", note);
+  }
+
+  updateNoteForPatient(note: Note, patient: Patient): Observable<Note> {
+    return this.http.put<Note>(baseUrl + "/patient/" + patient.id + "/note/" + note.id, note);
   }
 }

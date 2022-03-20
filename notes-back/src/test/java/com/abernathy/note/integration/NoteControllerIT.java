@@ -53,7 +53,7 @@ public class NoteControllerIT {
     }
 
     @Test
-    public void addPatient() {
+    public void addNoteForPatient() {
         NoteDTO note = new NoteDTO();
         note.setNote("note");
         note.setRiskLevel("riskLevel");
@@ -62,6 +62,21 @@ public class NoteControllerIT {
 
         ResponseEntity responseEntity = testRestTemplate.exchange(createURLWithPort(
                 "/api/note/1"), HttpMethod.POST, entity, NoteDTO.class);
+
+        Assertions.assertNotNull(responseEntity);
+
+    }
+
+    @Test
+    public void updateNoteForPatient() {
+        NoteDTO note = new NoteDTO();
+        note.setNote("note");
+        note.setRiskLevel("riskLevel");
+
+        HttpEntity entity = new HttpEntity<NoteDTO>(note, headers);
+
+        ResponseEntity responseEntity = testRestTemplate.exchange(createURLWithPort(
+                "/api/note/1"), HttpMethod.PUT, entity, NoteDTO.class);
 
         Assertions.assertNotNull(responseEntity);
 

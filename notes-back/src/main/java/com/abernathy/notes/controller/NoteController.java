@@ -26,4 +26,9 @@ public class NoteController {
         return noteService.addNoteForPatientId(note, patientId);
     }
 
+    @PutMapping(value = "/note/{noteId}/patient/{patientId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public NoteDTO updateNoteForPatient(@PathVariable("patientId") Long patientId, @PathVariable("noteId") String noteId, @RequestBody NoteDTO note) {
+        note.setId(noteId);
+        return noteService.updateNote(note, patientId);
+    }
 }
