@@ -120,15 +120,30 @@ public class PatientControllerTest {
     @Test
     void getAllNoteForPatient() throws Exception {
         NoteDTO noteDTO = new NoteDTO();
-        noteDTO.setNote("note");
+        noteDTO.setNote("com.abernathy.note");
         noteDTO.setId("idNote");
         noteDTO.setRiskLevel("riskLevel");
         Mockito.when(patientService.getAllNotes(1L)).thenReturn(List.of(noteDTO));
         mockMvc.perform(MockMvcRequestBuilders.get("/api/patient/1/notes", MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].riskLevel").value("riskLevel"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].note").value("note"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].note").value("com.abernathy.note"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("idNote"))
         ;
+    }
+
+    @Test
+    void addNoteForPatient() throws Exception {
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setNote("com.abernathy.note");
+        noteDTO.setId("idNote");
+        noteDTO.setRiskLevel("riskLevel");
+        Mockito.when(patientService.addNoteForPatient(Mockito.any(NoteDTO.class), Mockito.anyLong())).thenReturn(noteDTO);
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/patient/1/note")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"com.abernathy.note\": \"com.abernathy.note\", \"riskLevel\":\"riskLevel\"}"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("note").value("com.abernathy.note"))
+                .andExpect(MockMvcResultMatchers.jsonPath("riskLevel").value("riskLevel"));
     }
 }

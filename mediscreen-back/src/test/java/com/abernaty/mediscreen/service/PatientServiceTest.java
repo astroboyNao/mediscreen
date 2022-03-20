@@ -80,12 +80,12 @@ public class PatientServiceTest {
     @Test
     void shouldGetNotesForPatient() {
         NoteDTO noteDTO = new NoteDTO();
-        noteDTO.setNote("note");
+        noteDTO.setNote("com.abernathy.note");
         noteDTO.setId("idNote");
         noteDTO.setRiskLevel("riskLevel");
 
         Note note = new Note();
-        note.setNote("note");
+        note.setNote("com.abernathy.note");
         note.setId("idNote");
         note.setRiskLevel("riskLevel");
         Note[] notes = {note};
@@ -96,7 +96,30 @@ public class PatientServiceTest {
         var patientsResult = patientService.getAllNotes(1L);
 
         Assertions.assertThat(patientsResult.size()).isEqualTo(1);
-        Assertions.assertThat(patientsResult.get(0).getNote()).isEqualTo("note");
+        Assertions.assertThat(patientsResult.get(0).getNote()).isEqualTo("com.abernathy.note");
+
+    }
+
+    @Test
+    void addNotesForPatient() {
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setNote("com.abernathy.note");
+        noteDTO.setId("idNote");
+        noteDTO.setRiskLevel("riskLevel");
+
+        Note note = new Note();
+        note.setNote("com.abernathy.note");
+        note.setId("idNote");
+        note.setRiskLevel("riskLevel");
+        Note[] notes = {note};
+
+        Mockito.when(noteRepository.addNoteForPatient(note, 1L)).thenReturn(note);
+        Mockito.when(noteMapper.toNoteDTO(note)).thenReturn(noteDTO);
+        Mockito.when(noteMapper.toNote(noteDTO)).thenReturn(note);
+
+        var noteResult = patientService.addNoteForPatient(noteDTO, 1L);
+
+        Assertions.assertThat(noteResult.getNote()).isEqualTo("com.abernathy.note");
 
     }
 }

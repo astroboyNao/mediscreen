@@ -1,0 +1,12 @@
+.mat-table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  display: table;
+  border-collapse: collapse;
+  margin: 0px;
+}
+
+mat-form-field {
+  width: 100%;
+}

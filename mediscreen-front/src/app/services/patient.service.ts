@@ -28,4 +28,8 @@ export class PatientService {
   getAllNotes(patient: Patient): Observable<Note[]> {
     return this.http.get<Note[]>(baseUrl + "/patient/" + patient.id + "/notes");
   }
+
+  addNoteForPatient(note: Note, patient: Patient): Observable<Note> {
+    return this.http.post<Note>(baseUrl + "/patient/" + patient.id + "/com.abernathy.note", note);
+  }
 }

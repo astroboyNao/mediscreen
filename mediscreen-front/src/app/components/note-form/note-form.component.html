@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Edit Note</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formInstance">
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>RiskLevel</mat-label>
+        <mat-select formControlName="riskLevel">
+          <mat-option value="TestNone">TestNone</mat-option>
+          <mat-option value="TestBorderline">TestBorderline</mat-option>
+          <mat-option value="TestInDanger">TestInDanger</mat-option>
+          <mat-option value="TestEarlyOnset">TestEarlyOnset</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-7">
+      <mat-form-field appearance="outline" class="fullWidth">
+        <mat-label>Note</mat-label>
+        <textarea cols="250" formControlName="com.abernathy.note" matInput
+                  placeholder="com.abernathy.note"
+                  rows="12">
+        </textarea>
+      </mat-form-field>
+    </div>
+
+  </form>
+</div>
+
+<div class="mt-7" mat-dialog-actions>
+  <button (click)="save()" [disabled]="formInstance.dirty && formInstance.errors"
+          cdkFocusInitial color="primary"
+          mat-raised-button>Save
+  </button>
+  <button mat-dialog-close mat-raised-button>Cancel</button>
+
+</div>

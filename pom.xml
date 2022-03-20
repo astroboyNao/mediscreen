@@ -17,7 +17,7 @@
 	<groupId>com.abernathy</groupId>
 	<artifactId>mediscreen</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mediscreen</name>
+	<name>com.abernathy.note</name>
 	<description>MediScreen Project</description>
 
 

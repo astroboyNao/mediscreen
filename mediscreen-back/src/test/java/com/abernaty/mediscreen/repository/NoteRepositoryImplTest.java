@@ -36,11 +36,21 @@ public class NoteRepositoryImplTest {
     @Test
     public void getAllNoteForPatient() {
         Note note = new Note();
-        note.setNote("note");
+        note.setNote("com.abernathy.note");
         Note[] notes = {note};
         Mockito.when(restTemplate.getForObject("urlBaseApiNotesTest/notes/1", Note[].class))
                 .thenReturn(notes);
         Note[] noteResult = noteRepository.getAllForPatient(1L);
         Assertions.assertEquals(noteResult.length, 1);
+    }
+
+    @Test
+    public void addNoteForPatient() {
+        Note note = new Note();
+        note.setNote("com.abernathy.note");
+        Mockito.when(restTemplate.postForObject("urlBaseApiNotesTest/note/1", note, Note.class))
+                .thenReturn(note);
+        Note noteResult = noteRepository.addNoteForPatient(note, 1L);
+        Assertions.assertEquals(noteResult.getNote(), "com.abernathy.note");
     }
 }

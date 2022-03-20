@@ -4,6 +4,12 @@
       <th *matHeaderCellDef mat-header-cell> {{col}} </th>
       <td *matCellDef="let element" mat-cell>
         {{element[col]}}
+
+        <button (click)="add()" *ngIf="col == 'add'" aria-label="add" matRipple matTooltip="add"
+                matTooltipPosition="left">
+          <span aria-hidden="true" class="material-icons-outlined">add</span>
+        </button>
+
       </td>
     </ng-container>
 

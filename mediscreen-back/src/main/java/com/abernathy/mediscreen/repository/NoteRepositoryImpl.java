@@ -2,6 +2,7 @@ package com.abernathy.mediscreen.repository;
 
 
 import com.abernathy.mediscreen.model.domain.Note;
+import com.abernathy.mediscreen.model.dto.NoteDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,5 +21,9 @@ public class NoteRepositoryImpl implements NoteRepository {
 
     public Note[] getAllForPatient(Long patientId) {
         return this.restTemplate.getForObject(this.urlBaseApiNotes + "/notes/" + patientId, Note[].class);
+    }
+
+    public Note addNoteForPatient(Note note, Long patientId) {
+        return this.restTemplate.postForObject(this.urlBaseApiNotes + "/note/" + patientId, note, Note.class);
     }
 }

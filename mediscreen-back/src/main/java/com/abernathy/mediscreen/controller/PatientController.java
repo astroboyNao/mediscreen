@@ -37,4 +37,9 @@ public class PatientController {
     public List<NoteDTO> getAllNoteForPatient(@PathVariable("patientId") Long patientId) {
         return patientService.getAllNotes(patientId);
     }
+
+    @PostMapping(value = "/patient/{patientId}/note")
+    public NoteDTO addNoteForPatient(@PathVariable("patientId") Long patientId, @RequestBody NoteDTO noteDTO) {
+        return patientService.addNoteForPatient(noteDTO, patientId);
+    }
 }

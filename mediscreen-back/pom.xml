@@ -119,7 +119,7 @@
                 <version>2.22.2</version>
                 <com.abernathy.notes.configuration>
                     <excludes>
-                        <exclude>com.abernathy.mediscreen.model.domain.*</exclude>
+                        <exclude>com.abernathy.com.abernathy.note.model.domain.*</exclude>
                     </excludes>
                     <includes>
                         <include></include>
@@ -151,7 +151,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <com.abernathy.notes.configuration>
-                    <mainClass>com.abernathy.mediscreen.NotesApplication</mainClass>
+                    <mainClass>com.abernathy.com.abernathy.note.NotesApplication</mainClass>
                 </com.abernathy.notes.configuration>
                 <executions>
                     <execution>
@@ -172,7 +172,8 @@
                             <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.parent.basedir}/mediscreen-front/dist/mediscreen-app/
+                                    <directory>
+                                        ${project.parent.basedir}/com.abernathy.note-front/dist/com.abernathy.note-app/
                                     </directory>
                                 </resource>
                             </resources>

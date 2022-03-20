@@ -98,6 +98,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>1.50.5</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -110,7 +116,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <excludes>
-                        <exclude>com.abernathy.mediscreen.model.domain.*</exclude>
+                        <exclude>com.abernathy.com.abernathy.note.model.domain.*</exclude>
                     </excludes>
                     <includes>
                         <include></include>

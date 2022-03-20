@@ -21,4 +21,9 @@ public class NoteController {
         return noteService.getAllForPatientId(patientId);
     }
 
+    @PostMapping(value = "/note/{patientId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public NoteDTO addNoteForPatient(@PathVariable("patientId") Long patientId, @RequestBody NoteDTO note) {
+        return noteService.addNoteForPatientId(note, patientId);
+    }
+
 }

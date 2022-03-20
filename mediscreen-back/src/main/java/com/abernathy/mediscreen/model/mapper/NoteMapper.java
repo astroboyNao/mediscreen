@@ -10,6 +10,8 @@ import java.util.List;
 public interface NoteMapper {
     NoteDTO toNoteDTO(Note note);
 
+    Note toNote(NoteDTO noteDTO);
+
     List<NoteDTO> toNoteDTOs(List<Note> notes);
 
 }
