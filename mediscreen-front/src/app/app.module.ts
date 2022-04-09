@@ -17,6 +17,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {NoteListComponent} from "./components/note-list/note-list.component";
 import {NoteFormComponent} from "./components/note-form/note-form.component";
+import {AssessFormComponent} from "./components/assess-form/assess-form.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {NoteFormComponent} from "./components/note-form/note-form.component";
     PatientListComponent,
     PatientFormComponent,
     NoteListComponent,
-    NoteFormComponent
+    NoteFormComponent,
+    AssessFormComponent
   ],
   imports: [
     BrowserModule,

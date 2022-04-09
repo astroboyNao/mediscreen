@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {PatientFormComponent} from "../patient-form/patient-form.component";
 import {NoteListComponent} from "../note-list/note-list.component";
+import {AssessFormComponent} from "../assess-form/assess-form.component";
 
 @Component({
   selector: 'app-patient-list',
@@ -13,7 +14,7 @@ import {NoteListComponent} from "../note-list/note-list.component";
 })
 export class PatientListComponent implements OnInit {
   dataSource: MatTableDataSource<Patient> = new MatTableDataSource<Patient>();
-  displayColumns: string[] = ['id', 'name', 'firstName', 'family', 'dob', 'sex', 'address', 'phone', 'notes', 'edit', 'add'];
+  displayColumns: string[] = ['id', 'name', 'firstName', 'family', 'dob', 'sex', 'address', 'phone', 'assess', 'notes', 'edit'];
 
   constructor(private patientService: PatientService, public dialog: MatDialog) {
   }
@@ -42,6 +43,18 @@ export class PatientListComponent implements OnInit {
       if (result) {
         this.patientService.edit(result).subscribe({
           next: (patient) => this.getAllPatients()
+        });
+      }
+    });
+  }
+
+  showAssess(data: Patient) {
+    this.patientService.getAssess(data).subscribe({
+      next: (assess) => {
+
+        const dialogRef = this.dialog.open(AssessFormComponent, {
+          width: '800px',
+          data: assess
         });
       }
     });

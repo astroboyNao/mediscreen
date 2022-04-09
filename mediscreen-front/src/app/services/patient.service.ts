@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Patient} from "../models/patient.model";
 import {Note} from "../models/note.model";
+import {Assess} from "../models/assess.model";
 const baseUrl = 'http://localhost:8081/api';
 
 @Injectable({
@@ -35,5 +36,9 @@ export class PatientService {
 
   updateNoteForPatient(note: Note, patient: Patient): Observable<Note> {
     return this.http.put<Note>(baseUrl + "/patient/" + patient.id + "/note/" + note.id, note);
+  }
+
+  getAssess(patient: Patient): Observable<Assess> {
+    return this.http.get<Assess>(baseUrl + "/patient/" + patient.id + "/assess");
   }
 }

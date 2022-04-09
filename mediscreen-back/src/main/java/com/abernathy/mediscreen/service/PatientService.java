@@ -1,10 +1,12 @@
 package com.abernathy.mediscreen.service;
 
 import com.abernathy.mediscreen.model.domain.Note;
+import com.abernathy.mediscreen.model.dto.AssessDTO;
 import com.abernathy.mediscreen.model.dto.NoteDTO;
 import com.abernathy.mediscreen.model.dto.PatientDTO;
 import com.abernathy.mediscreen.model.mapper.NoteMapper;
 import com.abernathy.mediscreen.model.mapper.PatientMapper;
+import com.abernathy.mediscreen.repository.AssessRepository;
 import com.abernathy.mediscreen.repository.NoteRepository;
 import com.abernathy.mediscreen.repository.NoteRepositoryImpl;
 import com.abernathy.mediscreen.repository.PatientRepository;
@@ -22,6 +24,7 @@ public class PatientService {
     NoteRepository noteRepository;
     PatientMapper patientMapper;
     NoteMapper noteMapper;
+    AssessRepository assessRepository;
 
     public List<PatientDTO> getAll() {
         return patientMapper.toPatientDTOs(patientRepository.findAll());
@@ -49,5 +52,9 @@ public class PatientService {
         Note note = noteMapper.toNote(noteDTO);
         note.setPatientId(patientId);
         return noteMapper.toNoteDTO(noteRepository.updateNote(note));
+    }
+
+    public AssessDTO getAssess(Long patientId) {
+        return assessRepository.getAssess(patientId);
     }
 }

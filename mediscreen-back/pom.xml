@@ -117,14 +117,14 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
-                <com.abernathy.notes.configuration>
+                <configuration>
                     <excludes>
-                        <exclude>com.abernathy.com.abernathy.note.model.domain.*</exclude>
+                        <exclude>com.abernathy.mediscreen.model.domain.*</exclude>
                     </excludes>
                     <includes>
                         <include></include>
                     </includes>
-                </com.abernathy.notes.configuration>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -146,13 +146,22 @@
                         </goals>
                     </execution>
                 </executions>
+
+                <configuration>
+                    <excludes>
+                        <exclude>**/model/domain/*</exclude>
+                        <exclude>**/model/dto/*</exclude>
+                        <exclude>**/model/mapper/*</exclude>
+                        <exclude>**/configuration/*</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <com.abernathy.notes.configuration>
-                    <mainClass>com.abernathy.com.abernathy.note.NotesApplication</mainClass>
-                </com.abernathy.notes.configuration>
+                <configuration>
+                    <mainClass>com.abernathy.mediscreen.MediscreenApplication</mainClass>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -168,16 +177,15 @@
                         <id>copy-resources</id>
                         <phase>validate</phase>
                         <goals><goal>copy-resources</goal></goals>
-                        <com.abernathy.notes.configuration>
+                        <configuration>
                             <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>
-                                        ${project.parent.basedir}/com.abernathy.note-front/dist/com.abernathy.note-app/
+                                    <directory>${project.parent.basedir}/mediscreen-front/dist/mediscreen-app/
                                     </directory>
                                 </resource>
                             </resources>
-                        </com.abernathy.notes.configuration>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

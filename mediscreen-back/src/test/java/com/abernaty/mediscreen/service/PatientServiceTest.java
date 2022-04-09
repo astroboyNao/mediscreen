@@ -6,6 +6,7 @@ import com.abernathy.mediscreen.model.dto.NoteDTO;
 import com.abernathy.mediscreen.model.dto.PatientDTO;
 import com.abernathy.mediscreen.model.mapper.NoteMapper;
 import com.abernathy.mediscreen.model.mapper.PatientMapper;
+import com.abernathy.mediscreen.repository.AssessRepository;
 import com.abernathy.mediscreen.repository.NoteRepositoryImpl;
 import com.abernathy.mediscreen.repository.PatientRepository;
 import com.abernathy.mediscreen.service.PatientService;
@@ -21,6 +22,7 @@ public class PatientServiceTest {
     PatientMapper patientMapper;
     PatientService patientService;
     NoteRepositoryImpl noteRepository;
+    AssessRepository assessRepository;
     NoteMapper noteMapper;
 
     @BeforeEach
@@ -29,7 +31,7 @@ public class PatientServiceTest {
         patientMapper = Mockito.mock(PatientMapper.class);
         noteRepository = Mockito.mock(NoteRepositoryImpl.class);
         noteMapper = Mockito.mock(NoteMapper.class);
-        patientService = new PatientService(patientRepository, noteRepository, patientMapper, noteMapper);
+        patientService = new PatientService(patientRepository, noteRepository, patientMapper, noteMapper, assessRepository);
     }
 
     @Test

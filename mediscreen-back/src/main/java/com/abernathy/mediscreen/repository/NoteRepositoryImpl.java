@@ -19,7 +19,7 @@ public class NoteRepositoryImpl implements NoteRepository {
     private RestTemplate restTemplate;
     private String urlBaseApiNotes;
 
-    public NoteRepositoryImpl(RestTemplate restTemplate, @Value("${urlBaseApiNotes:http://localhost:8082/api}") String urlBaseApiNotes) {
+    public NoteRepositoryImpl(RestTemplate restTemplate, @Value("${urlBaseApiNotes:http://localhost:8084/api}") String urlBaseApiNotes) {
         this.restTemplate = restTemplate;
         this.urlBaseApiNotes = urlBaseApiNotes;
     }

@@ -14,7 +14,7 @@ import {NoteFormComponent} from "../note-form/note-form.component";
 })
 export class NoteListComponent implements OnInit {
   dataSource: MatTableDataSource<Note> = new MatTableDataSource<Note>();
-  displayColumns: string[] = ['id', 'riskLevel', 'note', 'edit', 'add'];
+  displayColumns: string[] = ['id', 'riskLevel', 'note', 'edit'];
   patient: Patient;
 
   constructor(public dialogRef: MatDialogRef<NoteListComponent>,
@@ -70,4 +70,6 @@ export class NoteListComponent implements OnInit {
       }
     });
   }
+
+
 }

@@ -1,30 +1,29 @@
 version: '3.7'
 
 services:
-  mediscreen-container:
-    image: oc-mediscreen:4
-    build:
-      context: ./
-      dockerfile: DockerFile
+  assess_service:
     depends_on:
+      - mongo_db
       - mysql_db
-      - oc-notes
-    volumes:
-      - /data/mediscreen
+    image: oc-assess
+    build:
+      context: ./assess-back
+      dockerfile: DockerFileAssess
     ports:
-      - "8080:8080"
+      - "8083:8083"
     links:
-      - mysql_db:app_db
-      - oc-notes:app_notes
+      - mongo_db:mongo_db
+      - mysql_db:mysql_db
 
   note_service:
     image: oc-notes
     build:
+      context: ./notes-back
       dockerfile: DockerFileNote
     depends_on:
       - mongo_db
     ports:
-      - "8080:8080"
+      - "8084:8084"
     links:
       - mongo_db:app_db
 
@@ -44,3 +43,21 @@ services:
     restart: always
     ports:
       - 27017:27017
+
+  mediscreen-container:
+    image: oc-mediscreen:4
+    build:
+      context: ./
+      dockerfile: DockerFile
+    depends_on:
+      - mysql_db
+      - note_service
+      - assess_service
+    volumes:
+      - /data/mediscreen
+    ports:
+      - "8081:8081"
+    links:
+      - mysql_db:app_db
+      - note_service:app_notes
+      - assess_service:app_assess

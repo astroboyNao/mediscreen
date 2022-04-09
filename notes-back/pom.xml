@@ -101,7 +101,7 @@
         <dependency>
             <groupId>de.flapdoodle.embed</groupId>
             <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <version>1.50.5</version>
+            <version>3.0.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -142,7 +142,16 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>**/model/domain/*</exclude>
+                        <exclude>**/model/dto/*</exclude>
+                        <exclude>**/model/mapper/*</exclude>
+                        <exclude>**/configuration/*</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

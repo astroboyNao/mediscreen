@@ -7,6 +7,5 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableMongoRepositories
 @ComponentScan("com.abernathy.notes.*")
-@EnableSwagger2
 public class ApplicationConfiguration {
 }

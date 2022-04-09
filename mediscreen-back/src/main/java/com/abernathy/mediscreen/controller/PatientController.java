@@ -1,6 +1,7 @@
 package com.abernathy.mediscreen.controller;
 
 import com.abernathy.mediscreen.model.domain.Patient;
+import com.abernathy.mediscreen.model.dto.AssessDTO;
 import com.abernathy.mediscreen.model.dto.NoteDTO;
 import com.abernathy.mediscreen.model.dto.PatientDTO;
 import com.abernathy.mediscreen.service.PatientService;
@@ -48,5 +49,10 @@ public class PatientController {
     public NoteDTO updateNoteForPatient(@PathVariable("patientId") Long patientId, @PathVariable("noteId") String noteId, @RequestBody NoteDTO noteDTO) {
         noteDTO.setId(noteId);
         return patientService.updateNoteForPatient(noteDTO, patientId);
+    }
+
+    @GetMapping(value = "/patient/{patientId}/assess")
+    public AssessDTO getAssess(@PathVariable("patientId") Long patientId) {
+        return patientService.getAssess(patientId);
     }
 }

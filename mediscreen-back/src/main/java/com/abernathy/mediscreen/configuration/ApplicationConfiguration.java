@@ -9,6 +9,5 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableJpaRepositories("com.abernathy.mediscreen.repository")
 @EntityScan("com.abernathy.mediscreen.model.domain")
 @ComponentScan("com.abernathy.mediscreen.*")
-@EnableSwagger2
 public class ApplicationConfiguration {
 }
